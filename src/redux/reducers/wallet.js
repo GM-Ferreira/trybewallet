@@ -13,6 +13,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
     };
+  case 'RECEIVE_CURRENCY_SUCESS':
+    return {
+      ...state,
+      currencies: action.currencies,
+    };
   default:
     return state;
   }
