@@ -9,9 +9,10 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case 'WALLET_REQUEST':
+  case 'FULL_CURRENCY_SUCESS':
     return {
       ...state,
+      expenses: [...state.expenses, action.payload],
     };
   case 'RECEIVE_CURRENCY_SUCESS':
     return {
