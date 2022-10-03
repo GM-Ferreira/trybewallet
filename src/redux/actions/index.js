@@ -13,6 +13,11 @@ export const receiveCurrency = (response) => ({
   currencies: response,
 });
 
+export const deleteExpense = (payload) => ({
+  type: 'DELETE_EXPENSE',
+  payload,
+});
+
 export const requestListAPI = () => async (dispatch) => {
   const endpoint = 'https://economia.awesomeapi.com.br/json/all';
   const data = await fetch(endpoint);

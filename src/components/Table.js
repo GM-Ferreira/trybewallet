@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpense } from '../redux/actions';
 
 class Table extends Component {
+  handleRemove = (expense) => {
+    const { dispatch } = this.props;
+    dispatch(deleteExpense(expense.id));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -38,6 +44,15 @@ class Table extends Component {
                   * expense.value * 100) / 100 }
                 </td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => this.handleRemove(expense) }
+                  >
+                    Remover
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

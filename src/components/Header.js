@@ -10,9 +10,9 @@ class Header extends Component {
         <div>
           <span> Total de despesas: </span>
           <span data-testid="total-field">
-            { Math.round(expenses.map((e) => e.value
-            * e.exchangeRates[e.currency].ask).reduce((pr, cur) => pr + cur, 0)
-            * 100) / 100 }
+            { Number(expenses.map((e) => e.value
+            * e.exchangeRates[e.currency].ask).reduce((pr, cur) => pr
+            + cur, 0)).toFixed(2)}
           </span>
           <span data-testid="header-currency-field">BRL</span>
         </div>
