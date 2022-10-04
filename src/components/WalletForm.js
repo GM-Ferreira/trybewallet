@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { requestListAPI, requestExpensesAPI } from '../redux/actions';
+import { requestListAPI, requestExpensesAPI, attExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
     valor: '',
     description: '',
     currencies: 'USD',
-    method: 'dinheiro',
+    method: 'Dinheiro',
     tag: 'alimentação',
   };
 
@@ -19,6 +19,22 @@ class WalletForm extends Component {
 
   handleChange = ({ value, name }) => {
     this.setState({ [name]: value });
+  };
+
+  handleClickEdit = (idToEdit) => {
+    const { dispatch, expenses } = this.props;
+    const { valor, description, currencies, method, tag } = this.state;
+    const expenseToEdit = expenses.filter((exps) => exps.id === idToEdit);
+    const newData = {
+      id: idToEdit,
+      value: valor,
+      description,
+      currency: currencies,
+      method,
+      tag,
+      exchangeRates: expenseToEdit[0].exchangeRates,
+    };
+    dispatch(attExpense(newData));
   };
 
   handleClick = () => {
@@ -38,13 +54,13 @@ class WalletForm extends Component {
       valor: '',
       description: '',
       currencies: 'USD',
-      method: 'dinheiro',
-      tag: 'alimentação',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     });
   };
 
   render() {
-    const { currenciesList } = this.props;
+    const { currenciesList, editor, idToEdit } = this.props;
     const { valor, description, currencies, method, tag } = this.state;
     return (
       <div>
@@ -157,7 +173,16 @@ class WalletForm extends Component {
             </option>
           </select>
         </label>
-        <button onClick={ this.handleClick } type="button">Adicionar despesa</button>
+        {editor
+          ? (
+            <button
+              onClick={ () => this.handleClickEdit(idToEdit) }
+              type="button"
+            >
+              Editar despesa
+            </button>
+          )
+          : <button onClick={ this.handleClick } type="button">Adicionar despesa</button>}
       </div>
     );
   }
@@ -166,12 +191,16 @@ class WalletForm extends Component {
 const mapStateToProps = (state) => ({
   currenciesList: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  editor: state.wallet.editor,
+  idToEdit: state.wallet.idToEdit,
 });
 
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf.isRequired,
   currenciesList: PropTypes.arrayOf.isRequired,
+  editor: PropTypes.bool.isRequired,
+  idToEdit: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);

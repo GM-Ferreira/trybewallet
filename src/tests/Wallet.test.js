@@ -5,6 +5,10 @@ import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 import Wallet from '../pages/Wallet';
 
+const inputValurTest = 'value-input';
+const inputDescrptTest = 'description-input';
+const inputMethTest = 'method-input';
+
 describe('Testing Wallet page', () => {
   it('Title text "TrybeWallet" aparece na página', () => {
     renderWithRouterAndRedux(<Wallet />);
@@ -24,10 +28,10 @@ describe('Testing Wallet page', () => {
   it('campos de input aparecem na página', () => {
     renderWithRouterAndRedux(<Wallet />);
 
-    const inputValue = screen.getByTestId('value-input');
-    const inputDescription = screen.getByTestId('description-input');
+    const inputValue = screen.getByTestId(inputValurTest);
+    const inputDescription = screen.getByTestId(inputDescrptTest);
     const inputCurrency = screen.getByTestId('currency-input');
-    const inputMethod = screen.getByTestId('method-input');
+    const inputMethod = screen.getByTestId(inputMethTest);
     const inputTag = screen.getByText(/Tipo de despesa/i);
 
     expect(inputValue).toBeInTheDocument();
@@ -40,10 +44,10 @@ describe('Testing Wallet page', () => {
   it('campos de input aparecem na página e são funcionais', async () => {
     renderWithRouterAndRedux(<Wallet />);
 
-    const inputValue = screen.getByTestId('value-input');
-    const inputDescription = screen.getByTestId('description-input');
+    const inputValue = screen.getByTestId(inputValurTest);
+    const inputDescription = screen.getByTestId(inputDescrptTest);
     const inputCurrency = await screen.findByDisplayValue('USD');
-    const inputMethod = screen.getByTestId('method-input');
+    const inputMethod = screen.getByTestId(inputMethTest);
     const inputTag = screen.getByDisplayValue(/alimentação/i);
     const enviarButton = screen.getByRole('button', { name: /Adicionar despesa/i });
 
@@ -73,5 +77,52 @@ describe('Testing Wallet page', () => {
 
     userEvent.click(removeButton);
     expect(removeButton).not.toBeInTheDocument();
+  });
+
+  it('função de editar despesa funciona', async () => {
+    renderWithRouterAndRedux(<Wallet />);
+
+    const inputValue = screen.getByTestId(inputValurTest);
+    const inputDescription = screen.getByTestId(inputDescrptTest);
+    const inputCurrency = await screen.findByDisplayValue('USD');
+    const inputMethod = screen.getByTestId(inputMethTest);
+    const inputTag = screen.getByDisplayValue(/alimentação/i);
+    const enviarButton = screen.getByRole('button', { name: /Adicionar despesa/i });
+
+    userEvent.type(inputValue, '100');
+    userEvent.type(inputDescription, 'testando');
+    userEvent.selectOptions(inputCurrency, 'USD');
+    userEvent.selectOptions(inputMethod, 'Dinheiro');
+    userEvent.selectOptions(inputTag, 'Trabalho');
+
+    userEvent.click(enviarButton);
+
+    userEvent.type(inputValue, '300');
+    userEvent.type(inputDescription, 'testando3');
+    userEvent.selectOptions(inputCurrency, 'USD');
+
+    userEvent.click(enviarButton);
+
+    userEvent.type(inputValue, '200');
+    userEvent.type(inputDescription, 'testando2');
+
+    userEvent.click(enviarButton);
+
+    const editButton = await screen.findByTestId('edit-btn');
+
+    expect(editButton).toBeInTheDocument();
+
+    userEvent.click(editButton);
+
+    const editForm = await screen.findByRole('button', { name: /editar despesa/i });
+
+    expect(editForm).toBeInTheDocument();
+
+    userEvent.type(inputValue, '10000');
+    userEvent.type(inputDescription, 'testando edit');
+
+    userEvent.click(editForm);
+
+    expect(enviarButton).toBeInTheDocument();
   });
 });

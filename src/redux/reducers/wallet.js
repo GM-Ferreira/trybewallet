@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
+const crescentFunc = () => (a, b) => a.id - b.id;
+
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case 'FULL_CURRENCY_SUCESS':
@@ -18,6 +20,21 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.payload),
+    };
+  case 'EDIT_EXPENSE':
+    return {
+      ...state,
+      editor: true,
+      idToEdit: action.id,
+    };
+  case 'EDIT_EXPENSE_SUCCESS':
+    return {
+      ...state,
+      editor: false,
+      idToEdit: 0,
+      expenses: [...state.expenses
+        .filter((expense) => expense.id !== action.editedExpense.id),
+      action.editedExpense].sort(crescentFunc()),
     };
   case 'RECEIVE_CURRENCY_SUCESS':
     return {

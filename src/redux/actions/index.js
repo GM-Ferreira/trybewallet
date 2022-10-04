@@ -18,6 +18,16 @@ export const deleteExpense = (payload) => ({
   payload,
 });
 
+export const editExpense = (id) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+});
+
+export const attExpense = (editedExpense) => ({
+  type: 'EDIT_EXPENSE_SUCCESS',
+  editedExpense,
+});
+
 export const requestListAPI = () => async (dispatch) => {
   const endpoint = 'https://economia.awesomeapi.com.br/json/all';
   const data = await fetch(endpoint);
