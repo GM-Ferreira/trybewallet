@@ -6,10 +6,10 @@ import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
 
 describe('Testing Login', () => {
-  it('texto "Trybe Wallet" aparece na página de Login', () => {
+  it('texto "Wallet" aparece na página de Login', () => {
     renderWithRouterAndRedux(<App />);
 
-    const title = screen.getByText(/Trybe Wallet/i);
+    const title = screen.getByText(/allet/i);
     expect(title).toBeInTheDocument();
   });
 

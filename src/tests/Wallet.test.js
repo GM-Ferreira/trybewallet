@@ -10,10 +10,10 @@ const inputDescrptTest = 'description-input';
 const inputMethTest = 'method-input';
 
 describe('Testing Wallet page', () => {
-  it('Title text "TrybeWallet" aparece na página', () => {
+  it('Title text "Wallet" aparece na página', () => {
     renderWithRouterAndRedux(<Wallet />);
 
-    const title = screen.getByText(/TrybeWallet/i);
+    const title = screen.getByText(/Wallet/i);
     expect(title).toBeInTheDocument();
   });
 
@@ -66,7 +66,7 @@ describe('Testing Wallet page', () => {
 
     userEvent.click(enviarButton);
 
-    const removeButton = await screen.findByRole('button', { name: /remover/i });
+    const removeButton = await screen.findByTestId('delete-btn');
     expect(removeButton).toBeInTheDocument();
 
     const despesasTotais = await screen.findByTestId('total-field');
