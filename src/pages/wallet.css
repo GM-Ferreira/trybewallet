@@ -1,0 +1,191 @@
+.wallet-header-icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.wallet-form-upper {
+  align-items: center;
+  background: white;
+  background-color: white;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin: auto;
+  width: 1037px;
+}
+
+.total-fiel-general {
+  align-items: center;
+  display: flex;
+}
+
+.email-value-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-field-title {
+  color: #003be5;
+  font-size: 16px;
+  font-weight: 700;
+  padding-left: 80px;
+}
+
+.total-field-value {
+  color: #003be5;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+
+.email-field {
+  align-items: center;
+  color: #2fc18c;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  padding-left: 80px;
+}
+
+.profile-icon {
+  width: 30px;
+}
+
+.form-general-no-button {
+  align-content: space-around;
+  background: rgba(225, 229, 235, 0.49);
+  color: #003be5;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 700;
+  height: 134px;
+  justify-content: space-evenly;
+  width: 1037px;
+}
+
+.form-general {
+  background: white;
+  border-radius: 1px 1px 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 210px;
+  margin: auto;
+  width: 1037px;
+}
+
+.form-button {
+  background: #2fc18c;
+  border: 1px solid #2fc18c;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  margin: auto;
+  width: 330px;
+}
+
+.value-input {
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 25px;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 158px;
+}
+
+.description-input {
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 25px;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 280px;
+}
+
+.currency-input {
+  background-color: white;
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 25px;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 90px;
+}
+
+.method-input {
+  background-color: white;
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 25px;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 200px;
+}
+
+.tag-input {
+  background-color: white;
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 25px;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 120px;
+}
+
+.table-general {
+  background-color: #003be5;
+  border-radius: 10px;
+  border-spacing: 0.5px;
+  box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
+  color: white;
+  margin-left: 5%;
+  padding: 210px 2px 30px;
+  position: absolute;
+  table-layout: fixed;
+  text-align: center;
+  top: 156px;
+  width: 90%;
+  z-index: -1;
+}
+
+th,
+td {
+  border-bottom: 1px solid white;
+}
+
+td {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+tr:hover {
+  background-color: #1a1b1c;
+}
+
+.remove-icon {
+  color: red;
+  width: 21px;
+}
+
+.delete-btn {
+  background-color: #003be5;
+  border: none;
+}
+
+.edit-icon {
+  color: #2fc18c;
+  width: 21px;
+}
+
+.edit-btn {
+  background-color: #003be5;
+  border: none;
+}
