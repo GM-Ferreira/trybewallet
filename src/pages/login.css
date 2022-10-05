@@ -79,7 +79,7 @@ body {
 }
 
 .login-form button:disabled {
-  background-color: #cccccc;
-  border: 1px solid #999999;
-  color: #666666;
+  background-color: #ccc;
+  border: 1px solid #999;
+  color: #666;
 }

@@ -156,12 +156,12 @@
   z-index: -1;
 }
 
-th,
-td {
+th {
   border-bottom: 1px solid white;
 }
 
 td {
+  border-bottom: 1px solid white;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
